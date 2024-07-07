@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -122,6 +122,30 @@ function App() {
     }
   };
 
+  const [isWebsiteDown, setIsWebsiteDown] = useState(false);
+
+  useEffect(() => {
+    async function checkWebsiteStatus() {
+      try {
+        const response = await fetch(
+          'https://sravanradio.sattvalife.ru/stream'
+        );
+        if (response.status === 404) {
+          setIsWebsiteDown(false);
+        } else {
+          setIsWebsiteDown(true);
+        }
+      } catch (error) {
+        console.error('Error checking website status:', error);
+        setIsWebsiteDown(true);
+      }
+    }
+
+    checkWebsiteStatus();
+  }, []);
+
+  const record = isWebsiteDown && 'container';
+
   return (
     <>
       <div className="container">
@@ -131,7 +155,6 @@ function App() {
           onEnded={handleNextSong}
           onTimeUpdate={handleAudioUpdate}
           id="myAudio"
-          autoPlay
         ></audio>
         <video
           src={vidArray[videoIndex]}
@@ -140,6 +163,7 @@ function App() {
           autoPlay
           className="backgroundVideo"
         ></video>
+
         <div className="blackScreen"></div>
         <div className="music-Container">
           <p className="musicPlayer">Онлайн стрим</p>
@@ -155,21 +179,23 @@ function App() {
           </a>
           <p className="music-Head-Name">{currentMusicDetails.songName}</p>
           <p className="music-Artist-Name">{currentMusicDetails.songArtist}</p>
-          <img
-            src={currentMusicDetails.songAvatar}
-            className={avatarClass[avatarClassIndex]}
-            onClick={handleAvatar}
-            alt="song Avatar"
-            id="songAvatar"
-          />
 
+          <div id={record}>
+            <img
+              src={currentMusicDetails.songAvatar}
+              className={avatarClass[avatarClassIndex]}
+              onClick={handleAvatar}
+              alt="song Avatar"
+              id="songAvatar"
+            />
+            <div class="sphere"></div>
+          </div>
           {!currentMusicDetails.stream && (
             <div className="musicTimerDiv">
               <p className="musicCurrentTime">${musicCurrentTime}</p>
               <p className="musicTotalLenght">${musicTotalLength}</p>
             </div>
           )}
-
           {/* <input
             type="range"
             name="musicProgressBar"
@@ -177,24 +203,34 @@ function App() {
             value={audioProgress}
             onChange={handleMusicProgressBar}
           /> */}
-
           <div className="musicControlers">
             {/* <i
               className="fa-solid fa-backward musicControler"
               onClick={handlePrevSong}
             ></i> */}
-            <i
-              className={`fa-solid ${
-                isAudioPlaying ? 'fa-pause-circle' : 'fa-circle-play'
-              } playBtn`}
-              onClick={handleAudioPlay}
-            ></i>
+
+            {isWebsiteDown ? (
+              <i
+                className={`fa-solid ${
+                  isAudioPlaying ? 'fa-pause-circle' : 'fa-circle-play'
+                } playBtn`}
+                onClick={handleAudioPlay}
+              ></i>
+            ) : (
+              <i
+                className={`fa-solid disabledPlay ${
+                  isAudioPlaying ? 'fa-circle-play' : 'fa-pause-circle'
+                } playBtn`}
+              ></i>
+            )}
+
             {/*     <i
               className="fa-solid fa-forward musicControler"
               onClick={handleNextSong}
             ></i> */}
           </div>
         </div>
+
         <div className="changeBackBtn" onClick={handleChangeBackground}>
           Сменить тему
         </div>
