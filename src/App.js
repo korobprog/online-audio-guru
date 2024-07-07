@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import './App.css';
+import nostrim from './nostrim.jpg';
 
 function App() {
   const [currentMusicDetails, setCurrentMusicDetails] = useState({
@@ -23,6 +24,7 @@ function App() {
   //Change Avatar Class
   let avatarClass = ['objectFitCover', 'objectFitContain', 'none'];
   const [avatarClassIndex, setAvatarClassIndex] = useState(0);
+  console.log('🚀 ~ App ~ avatarClassIndex:', avatarClassIndex);
   const handleAvatar = () => {
     if (avatarClassIndex >= avatarClass.length - 1) {
       setAvatarClassIndex(0);
@@ -44,10 +46,10 @@ function App() {
 
   const musicAPI = [
     {
-      songName: 'Chasing',
-      songArtist: 'NEFFEX',
-      songSrc: 'https://sravanradio.sattvalife.ru/stream',
-      songAvatar: './Assets/Images/image1.jpg',
+      songName: '',
+      songArtist: '',
+      songSrc: '.Assets/songs/nostrim.mp3',
+      songAvatar: nostrim,
     },
   ];
 
@@ -122,6 +124,7 @@ function App() {
   };
 
   const [isWebsiteDown, setIsWebsiteDown] = useState(false);
+  console.log('🚀 ~ App ~ isWebsiteDown:', isWebsiteDown);
 
   useEffect(() => {
     async function checkWebsiteStatus() {
@@ -144,6 +147,7 @@ function App() {
   }, []);
 
   const record = isWebsiteDown && 'container';
+  console.log('🚀 ~ App ~ record:', record);
 
   return (
     <>
@@ -165,7 +169,12 @@ function App() {
 
         <div className="blackScreen"></div>
         <div className="music-Container">
-          <p className="musicPlayer">Онлайн стрим</p>
+          {isWebsiteDown ? (
+            <p className="musicPlayer">Онлайн стрим</p>
+          ) : (
+            <p className="musicPlayer">Офлайн стрим</p>
+          )}
+
           <a
             href="https://www.youtube.com/channel/UCY9z_LHm2NMRJbqKl2H3Kdw"
             title="Подпишись"
@@ -176,12 +185,16 @@ function App() {
             <img src="./Assets/Images/Youtube_logo.png" alt="Youtube Logo" />
             <p>BVKS</p>
           </a>
-          <p className="music-Head-Name">{currentMusicDetails.songName}</p>
-          <p className="music-Artist-Name">{currentMusicDetails.songArtist}</p>
+          <p className="music-Head-Name">
+            {isWebsiteDown && currentMusicDetails.songName}
+          </p>
+          <p className="music-Artist-Name">
+            {isWebsiteDown && currentMusicDetails.songArtist}
+          </p>
 
           <div id={record}>
             <img
-              src={currentMusicDetails.songAvatar}
+              src={isWebsiteDown ? currentMusicDetails.songAvatar : nostrim}
               className={avatarClass[avatarClassIndex]}
               onClick={handleAvatar}
               alt="song Avatar"
