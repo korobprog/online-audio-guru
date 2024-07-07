@@ -106,10 +106,10 @@ function App() {
     }`;
     setMusicCurrentTime(musicCurrentT);
 
-    const progress = parseInt(
-      (currentAudio.current.currentTime / currentAudio.current.duration) * 100
-    );
-    setAudioProgress(isNaN(progress) ? 0 : progress);
+    // const progress = parseInt(
+    //   (currentAudio.current.currentTime / currentAudio.current.duration) * 100
+    // );
+    // setAudioProgress(isNaN(progress) ? 0 : progress);
   };
 
   const vidArray = ['./Assets/Videos/video1.mp4', './Assets/Videos/video2.mp4'];
