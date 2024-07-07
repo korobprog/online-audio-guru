@@ -126,7 +126,7 @@ function App() {
     <>
       <div className="container">
         <audio
-          src="https://radiorecord.hostingradio.ru/rr_main96.aacp"
+          src="https://sravanradio.sattvalife.ru/stream"
           ref={currentAudio}
           onEnded={handleNextSong}
           onTimeUpdate={handleAudioUpdate}
