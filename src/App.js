@@ -149,6 +149,16 @@ function App() {
         <div className="blackScreen"></div>
         <div className="music-Container">
           <p className="musicPlayer">Онлайн стрим</p>
+          <a
+            href="https://www.youtube.com/channel/UCY9z_LHm2NMRJbqKl2H3Kdw"
+            title="Подпишись"
+            className="youtube-Subs"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="./Assets/Images/Youtube_logo.png" alt="Youtube Logo" />
+            <p>BVKS</p>
+          </a>
           <p className="music-Head-Name">{currentMusicDetails.songName}</p>
           <p className="music-Artist-Name">{currentMusicDetails.songArtist}</p>
           <img
@@ -158,6 +168,7 @@ function App() {
             alt="song Avatar"
             id="songAvatar"
           />
+
           {!currentMusicDetails.stream && (
             <div className="musicTimerDiv">
               <p className="musicCurrentTime">${musicCurrentTime}</p>
@@ -193,16 +204,6 @@ function App() {
         <div className="changeBackBtn" onClick={handleChangeBackground}>
           Сменить тему
         </div>
-        <a
-          href="https://www.youtube.com/channel/UCY9z_LHm2NMRJbqKl2H3Kdw"
-          title="Подпишись"
-          className="youtube-Subs"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src="./Assets/Images/Youtube_logo.png" alt="Youtube Logo" />
-          <p>Е.С Бхактивикаша Свами</p>
-        </a>
       </div>
     </>
   );
