@@ -218,9 +218,7 @@ function App() {
               ></i>
             ) : (
               <i
-                className={`fa-solid disabledPlay ${
-                  isAudioPlaying ? 'fa-circle-play' : 'fa-pause-circle'
-                } playBtn`}
+                className={`fa-solid  fa-circle-play playBtn disabledPlay `}
               ></i>
             )}
 
