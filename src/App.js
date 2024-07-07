@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import './App.css';
 import nostrim from './nostrim.jpg';
+import ReactLoading from 'react-loading';
 
 function App() {
   const [currentMusicDetails, setCurrentMusicDetails] = useState({
@@ -124,7 +125,6 @@ function App() {
   };
 
   const [isWebsiteDown, setIsWebsiteDown] = useState(false);
-  console.log('🚀 ~ App ~ isWebsiteDown:', isWebsiteDown);
 
   useEffect(() => {
     async function checkWebsiteStatus() {
@@ -147,7 +147,6 @@ function App() {
   }, []);
 
   const record = isWebsiteDown && 'container';
-  console.log('🚀 ~ App ~ record:', record);
 
   return (
     <>
@@ -193,13 +192,18 @@ function App() {
           </p>
 
           <div id={record}>
-            <img
-              src={isWebsiteDown ? currentMusicDetails.songAvatar : nostrim}
-              className={avatarClass[avatarClassIndex]}
-              onClick={handleAvatar}
-              alt="song Avatar"
-              id="songAvatar"
-            />
+            {isWebsiteDown ? (
+              <img
+                src={isWebsiteDown ? currentMusicDetails.songAvatar : nostrim}
+                className={avatarClass[avatarClassIndex]}
+                onClick={handleAvatar}
+                alt="song Avatar"
+                id="songAvatar"
+              />
+            ) : (
+              <ReactLoading height={300} width={300} />
+            )}
+
             <div class="sphere"></div>
           </div>
           {!currentMusicDetails.stream && (
