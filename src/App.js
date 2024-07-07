@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -71,17 +71,17 @@ function App() {
     }
   };
 
-  const handlePrevSong = () => {
-    if (musicIndex === 0) {
-      let setNumber = musicAPI.length - 1;
-      setMusicIndex(setNumber);
-      updateCurrentMusicDetails(setNumber);
-    } else {
-      let setNumber = musicIndex - 1;
-      setMusicIndex(setNumber);
-      updateCurrentMusicDetails(setNumber);
-    }
-  };
+  // const handlePrevSong = () => {
+  //   if (musicIndex === 0) {
+  //     let setNumber = musicAPI.length - 1;
+  //     setMusicIndex(setNumber);
+  //     updateCurrentMusicDetails(setNumber);
+  //   } else {
+  //     let setNumber = musicIndex - 1;
+  //     setMusicIndex(setNumber);
+  //     updateCurrentMusicDetails(setNumber);
+  //   }
+  // };
 
   const updateCurrentMusicDetails = (number) => {
     let musicObject = musicAPI[number];
@@ -137,6 +137,7 @@ function App() {
           ref={currentAudio}
           onEnded={handleNextSong}
           onTimeUpdate={handleAudioUpdate}
+          id="myAudio"
         ></audio>
         <video
           src={vidArray[videoIndex]}
@@ -164,28 +165,29 @@ function App() {
             </div>
           )}
 
-          <input
+          {/* <input
             type="range"
             name="musicProgressBar"
             className="musicProgressBar"
             value={audioProgress}
             onChange={handleMusicProgressBar}
-          />
+          /> */}
+
           <div className="musicControlers">
-            <i
+            {/* <i
               className="fa-solid fa-backward musicControler"
               onClick={handlePrevSong}
-            ></i>
+            ></i> */}
             <i
               className={`fa-solid ${
                 isAudioPlaying ? 'fa-pause-circle' : 'fa-circle-play'
               } playBtn`}
               onClick={handleAudioPlay}
             ></i>
-            <i
+            {/*     <i
               className="fa-solid fa-forward musicControler"
               onClick={handleNextSong}
-            ></i>
+            ></i> */}
           </div>
         </div>
         <div className="changeBackBtn" onClick={handleChangeBackground}>
