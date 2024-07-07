@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -11,7 +11,6 @@ function App() {
     stream: true,
   });
 
-  //UseStates Variables
   const [audioProgress, setAudioProgress] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [musicIndex, setMusicIndex] = useState(0);
@@ -20,12 +19,6 @@ function App() {
   const [videoIndex, setVideoIndex] = useState(0);
 
   const currentAudio = useRef();
-
-  const handleMusicProgressBar = (e) => {
-    setAudioProgress(e.target.value);
-    currentAudio.current.currentTime =
-      (e.target.value * currentAudio.current.duration) / 100;
-  };
 
   //Change Avatar Class
   let avatarClass = ['objectFitCover', 'objectFitContain', 'none'];
