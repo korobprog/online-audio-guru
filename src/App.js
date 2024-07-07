@@ -192,17 +192,13 @@ function App() {
           </p>
 
           <div id={record}>
-            {isWebsiteDown ? (
-              <img
-                src={isWebsiteDown ? currentMusicDetails.songAvatar : nostrim}
-                className={avatarClass[avatarClassIndex]}
-                onClick={handleAvatar}
-                alt="song Avatar"
-                id="songAvatar"
-              />
-            ) : (
-              <ReactLoading height={300} width={300} />
-            )}
+            <img
+              src={isWebsiteDown ? currentMusicDetails.songAvatar : nostrim}
+              className={avatarClass[avatarClassIndex]}
+              onClick={handleAvatar}
+              alt="song Avatar"
+              id="songAvatar"
+            />
 
             <div class="sphere"></div>
           </div>
