@@ -11,7 +11,7 @@ function App() {
     stream: true,
   });
 
-  const [audioProgress, setAudioProgress] = useState(0);
+  //const [audioProgress, setAudioProgress] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [musicIndex, setMusicIndex] = useState(0);
   const [musicTotalLength, setMusicTotalLength] = useState('04 : 38');
