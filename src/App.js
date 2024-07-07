@@ -5,7 +5,7 @@ function App() {
   const [currentMusicDetails, setCurrentMusicDetails] = useState({
     songName: 'лекция 1',
     songArtist: 'Е.С. Бхакти Викаша Свами',
-    songSrc: './Assets/songs/Chasing - NEFFEX.mp3',
+    songSrc: 'https://sravanradio.sattvalife.ru/stream',
     songAvatar:
       'https://vasudeva.ru/images/thumbnails/images/stories/guru/bvks/Bhakti_Vikasa_Swami_z2-fill-1200x1200.jpg',
     stream: true,
@@ -46,8 +46,7 @@ function App() {
     {
       songName: 'Chasing',
       songArtist: 'NEFFEX',
-      songSrc:
-        'https://radiorecord.hostingradio.ru/rr_main96.aacp - NEFFEX.mp3',
+      songSrc: 'https://sravanradio.sattvalife.ru/stream',
       songAvatar: './Assets/Images/image1.jpg',
     },
   ];
