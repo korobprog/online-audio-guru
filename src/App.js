@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import './App.css';
 import nostrim from './nostrim.jpg';
-import ReactLoading from 'react-loading';
 
 function App() {
   const [currentMusicDetails, setCurrentMusicDetails] = useState({
@@ -12,8 +11,6 @@ function App() {
       'https://vasudeva.ru/images/thumbnails/images/stories/guru/bvks/Bhakti_Vikasa_Swami_z2-fill-1200x1200.jpg',
     stream: true,
   });
-
-  //const [audioProgress, setAudioProgress] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [musicIndex, setMusicIndex] = useState(0);
   const [musicTotalLength, setMusicTotalLength] = useState('04 : 38');
@@ -25,7 +22,7 @@ function App() {
   //Change Avatar Class
   let avatarClass = ['objectFitCover', 'objectFitContain', 'none'];
   const [avatarClassIndex, setAvatarClassIndex] = useState(0);
-  console.log('🚀 ~ App ~ avatarClassIndex:', avatarClassIndex);
+
   const handleAvatar = () => {
     if (avatarClassIndex >= avatarClass.length - 1) {
       setAvatarClassIndex(0);
@@ -66,18 +63,6 @@ function App() {
     }
   };
 
-  // const handlePrevSong = () => {
-  //   if (musicIndex === 0) {
-  //     let setNumber = musicAPI.length - 1;
-  //     setMusicIndex(setNumber);
-  //     updateCurrentMusicDetails(setNumber);
-  //   } else {
-  //     let setNumber = musicIndex - 1;
-  //     setMusicIndex(setNumber);
-  //     updateCurrentMusicDetails(setNumber);
-  //   }
-  // };
-
   const updateCurrentMusicDetails = (number) => {
     let musicObject = musicAPI[number];
     currentAudio.current.src = musicObject.songSrc;
@@ -107,11 +92,6 @@ function App() {
       currentSec < 10 ? `0${currentSec}` : currentSec
     }`;
     setMusicCurrentTime(musicCurrentT);
-
-    // const progress = parseInt(
-    //   (currentAudio.current.currentTime / currentAudio.current.duration) * 100
-    // );
-    // setAudioProgress(isNaN(progress) ? 0 : progress);
   };
 
   const vidArray = ['./Assets/Videos/video1.mp4', './Assets/Videos/video2.mp4'];
@@ -208,19 +188,8 @@ function App() {
               <p className="musicTotalLenght">${musicTotalLength}</p>
             </div>
           )}
-          {/* <input
-            type="range"
-            name="musicProgressBar"
-            className="musicProgressBar"
-            value={audioProgress}
-            onChange={handleMusicProgressBar}
-          /> */}
-          <div className="musicControlers">
-            {/* <i
-              className="fa-solid fa-backward musicControler"
-              onClick={handlePrevSong}
-            ></i> */}
 
+          <div className="musicControlers">
             {isWebsiteDown ? (
               <i
                 className={`fa-solid ${
@@ -233,11 +202,6 @@ function App() {
                 className={`fa-solid  fa-circle-play playBtn disabledPlay `}
               ></i>
             )}
-
-            {/*     <i
-              className="fa-solid fa-forward musicControler"
-              onClick={handleNextSong}
-            ></i> */}
           </div>
         </div>
 
