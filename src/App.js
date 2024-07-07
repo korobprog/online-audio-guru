@@ -138,6 +138,7 @@ function App() {
           onEnded={handleNextSong}
           onTimeUpdate={handleAudioUpdate}
           id="myAudio"
+          autoPlay
         ></audio>
         <video
           src={vidArray[videoIndex]}
